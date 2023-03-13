@@ -1,10 +1,10 @@
 import React from "react";
 
-function Form() {
+function Form({type}) {
   return (
     <div>
       <main class="max-w-3xl rounded-lg mx-auto relative z-20 p-10 xl:max-w-none bg-[#1E293B]">
-        <h1 class="mb-10 text-center lws-section-title">Edit Job</h1>
+        <h1 class="mb-10 text-center lws-section-title">{type=='job'?'Edit Job':'Add NewJob'}</h1>
 
         <div class="max-w-3xl mx-auto">
           <form class="space-y-6">
@@ -79,7 +79,7 @@ function Form() {
                 id="lws-submit"
                 class="cursor-pointer btn btn-primary w-fit"
               >
-                Edit
+                {type=='job'?'Edit':'Add'}
               </button>
             </div>
           </form>
