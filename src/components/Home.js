@@ -29,7 +29,10 @@ function Home() {
 
   if (!isLoading && !isError && jobs?.length > 0) {
     filteredJobs = [...jobs];
+    console.log(filteredJobs);
+    console.log(jobType!="all");
     if (jobType != "all") {
+      
       filteredJobs = jobs.filter((item) => {
         return item.type == jobType;
       });
@@ -44,7 +47,7 @@ function Home() {
         return b.salary - a.salary;
       });
     }
-
+    console.log(filteredJobs);
     content = filteredJobs.map((job) => <Job key={job.id} job={job} />);
   }
 

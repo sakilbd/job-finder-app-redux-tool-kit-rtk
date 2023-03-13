@@ -11,7 +11,7 @@ const initialState = {
     isLoading: false,
     isError: false,
     error: "",
-    jobType: '',
+    jobType: 'all',
 };
 
 // async thunks
