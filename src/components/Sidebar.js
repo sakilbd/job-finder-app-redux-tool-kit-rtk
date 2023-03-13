@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function Sidebar() {
   return (
@@ -7,14 +8,14 @@ function Sidebar() {
           <nav>
             <ul class="space-y-4">
               <li>
-                <a
-                  href="/jobs"
+                <Link
+                 to="/"
                   class="main-menu menu-active"
                   id="lws-alljobs-menu"
                 >
                   <i class="fa-solid fa-briefcase"></i>
                   <span> All Available Jobs</span>
-                </a>
+                </Link>
                 <ul class="space-y-6 lg:space-y-2 ">
                   <li>
                     <a
@@ -49,10 +50,10 @@ function Sidebar() {
                 </ul>
               </li>
               <li>
-                <a href="/jobs" class="main-menu" id="lws-addJob-menu">
+                <Link to='create-job' class="main-menu" id="lws-addJob-menu">
                   <i class="fa-solid fa-file-circle-plus"></i>
                   <span>Add NewJob</span>
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>
