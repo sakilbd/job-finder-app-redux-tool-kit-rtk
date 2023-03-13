@@ -1,7 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { setJobType } from '../features/jobs/jobSlice'
+import { useDispatch } from 'react-redux'
 
 function Sidebar() {
+  const dispatch= useDispatch();
+
+  const setJobTypeHandler = (e,jobType)=>{
+    // e.target.preventDefault();
+    dispatch(setJobType(jobType));
+    
+  }
+
   return (
     <div>
        <div class="sidebar">
@@ -12,6 +22,7 @@ function Sidebar() {
                  to="/"
                   class="main-menu menu-active"
                   id="lws-alljobs-menu"
+                  onClick={(e)=>setJobTypeHandler(e,"all")}
                 >
                   <i class="fa-solid fa-briefcase"></i>
                   <span> All Available Jobs</span>
@@ -20,7 +31,7 @@ function Sidebar() {
                   <li>
                     <a
                       class="sub-menu"
-                      href="/jobs/internship"
+                      onClick={(e)=>setJobTypeHandler(e,'Internship')}
                       id="lws-internship-menu"
                     >
                       <i class="fa-solid fa-stop !text-[#FF5757]"></i>
@@ -30,7 +41,8 @@ function Sidebar() {
                   <li>
                     <a
                       class="sub-menu"
-                      href="/jobs/fulltime"
+                      onClick={(e)=>setJobTypeHandler(e,'Full Time')}
+
                       id="lws-fulltime-menu"
                     >
                       <i class="fa-solid fa-stop !text-[#FF8A00]"></i>
@@ -40,7 +52,7 @@ function Sidebar() {
                   <li>
                     <a
                       class="sub-menu"
-                      href="/jobs/remote"
+                      onClick={(e)=>setJobTypeHandler(e,'Remote')}
                       id="lws-remote-menu"
                     >
                       <i class="fa-solid fa-stop !text-[#56E5C4]"></i>

@@ -11,7 +11,7 @@ const initialState = {
     isLoading: false,
     isError: false,
     error: "",
-    editing: {},
+    jobType: '',
 };
 
 // async thunks
@@ -52,8 +52,8 @@ const jobSlice = createSlice({
     name: "jobs",
     initialState,
     reducers: {
-        editActive: (state, action) => {
-            state.editing = action.payload;
+        setJobType: (state, action) => {
+            state.jobType = action.payload;
         },
         editInActive: (state) => {
             state.editing = {};
@@ -131,4 +131,4 @@ const jobSlice = createSlice({
 });
 
 export default jobSlice.reducer;
-export const { editActive, editInActive } = jobSlice.actions;
+export const { setJobType, editInActive } = jobSlice.actions;
