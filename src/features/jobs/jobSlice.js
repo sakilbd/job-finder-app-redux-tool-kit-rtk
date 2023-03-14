@@ -55,10 +55,8 @@ const jobSlice = createSlice({
     reducers: {
         setJobType: (state, action) => {
             state.jobType = action.payload;
-        },
-        editInActive: (state) => {
-            state.editing = {};
-        },
+        }
+       
     },
     extraReducers: (builder) => {
         builder
@@ -132,4 +130,4 @@ const jobSlice = createSlice({
 });
 
 export default jobSlice.reducer;
-export const { setJobType, editInActive } = jobSlice.actions;
+export const { setJobType } = jobSlice.actions;

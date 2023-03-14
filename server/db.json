@@ -23,24 +23,31 @@
     },
     {
       "title": "Android App Developer",
-      "type": "Full Time",
+      "type": "Remote",
       "salary": "350",
       "deadline": "2022-12-31",
       "id": 6
     },
     {
       "title": "Software Developer",
-      "type": "Full Time",
+      "type": "Remote",
       "salary": "96",
       "deadline": "1973-09-04",
       "id": 7
     },
     {
+      "title": "MERN Stack Developer",
+      "type": "Full Time",
+      "salary": "7",
+      "deadline": "2002-09-11",
+      "id": 8
+    },
+    {
       "title": "IOS App Developer",
       "type": "Internship",
-      "salary": "72",
-      "deadline": "1991-05-26",
-      "id": 8
+      "salary": "19",
+      "deadline": "2007-03-23",
+      "id": 9
     }
   ]
 }
