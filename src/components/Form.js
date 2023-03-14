@@ -1,14 +1,30 @@
 import React, { useState } from "react";
+import { createJob, updateJob } from "../features/jobs/jobSlice";
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+
 
 function Form({ formType }) {
+  const dispatch = useDispatch();
   const [title, setTitle] = useState("");
   const [type, setType] = useState("");
   const [salary, setsalary] = useState("");
   const [deadline, setDeadline] = useState("");
 
+  const {jobId} = useParams(); 
+
   const submitHandler = (e) => {
+  
     e.preventDefault();
+    const formData={title,type,salary,deadline}
+    console.log(formData);
     console.log(title);
+    if(formType=='edit-job'){
+      dispatch(updateJob(jobId,formData));
+    }
+    else{
+      dispatch(createJob(formData))
+    }
    
   };
   return (
