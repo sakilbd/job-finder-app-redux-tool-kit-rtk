@@ -22,7 +22,7 @@ function Home() {
     return () => {};
   }, []);
   const searchHandler = (value)=>{
-    console.log(value);
+   
     setSearchText(value);
   }
   let content = "";
@@ -34,8 +34,7 @@ function Home() {
 
   if (!isLoading && !isError && jobs?.length > 0) {
     filteredJobs = [...jobs];
-    console.log(filteredJobs);
-    console.log(jobType!="all");
+    
     if (jobType != "all") {
       
       filteredJobs = jobs.filter((item) => {
@@ -52,7 +51,7 @@ function Home() {
         return b.salary - a.salary;
       });
     }
-    console.log(filteredJobs);
+   
     filteredJobs=filteredJobs.filter(item=>{
       return item.title.toLowerCase().indexOf(searchText)>=0;
     })

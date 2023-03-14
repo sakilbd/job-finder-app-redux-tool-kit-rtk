@@ -13,7 +13,9 @@ function Form({ formType }) {
   const { jobId } = useParams();
   const nevigate = useNavigate();
   useEffect(() => {
-    if ((formType == "edit-job")) {
+    
+    if (jobId && data.jobs.length>0) {
+      
       const jobInfo = data.jobs.filter((item) => {
         return item.id == jobId;
       });
@@ -21,8 +23,7 @@ function Form({ formType }) {
       setType(jobInfo[0].type);
       setsalary(jobInfo[0].salary);
       setDeadline(jobInfo[0].deadline);
-      // console.log(jobInfo[0]);
-      // console.log(title);
+      
     }
 
     return () => {};
