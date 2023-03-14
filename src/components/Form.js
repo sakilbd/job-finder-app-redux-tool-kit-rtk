@@ -3,51 +3,44 @@ import { createJob, updateJob } from "../features/jobs/jobSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 
-
-
 function Form({ formType }) {
-  const data = useSelector(state=>state.jobs);
+  const data = useSelector((state) => state.jobs);
   const dispatch = useDispatch();
   const [title, setTitle] = useState("");
   const [type, setType] = useState("");
   const [salary, setsalary] = useState("");
   const [deadline, setDeadline] = useState("");
-  const {jobId} = useParams();
-  const nevigate = useNavigate(); 
+  const { jobId } = useParams();
+  const nevigate = useNavigate();
   useEffect(() => {
-    if(formType="edit-job"){
-      const jobInfo=data.jobs.filter(item=>{
-        return item.id==jobId;
-      })
+    if ((formType == "edit-job")) {
+      const jobInfo = data.jobs.filter((item) => {
+        return item.id == jobId;
+      });
       setTitle(jobInfo[0].title);
       setType(jobInfo[0].type);
       setsalary(jobInfo[0].salary);
       setDeadline(jobInfo[0].deadline);
-      console.log(jobInfo[0]);
-      console.log(title);
+      // console.log(jobInfo[0]);
+      // console.log(title);
     }
-  
-    return () => {
-      
-    }
-  }, [])
-  
+
+    return () => {};
+  }, []);
 
   const submitHandler = (e) => {
-  
     e.preventDefault();
-    const data={title,type,salary,deadline}
-    
-    console.log(title);
-    console.log("jobId",jobId);
-    if(formType=='edit-job'){
-      dispatch(updateJob({jobId,data}));
+
+    // console.log(title);
+    // console.log("jobId",jobId);
+    if (formType == "edit-job") {
+      const data = { title, type, salary, deadline };
+      dispatch(updateJob({ jobId, data }));
+    } else {
+      const data = { title, type, salary, deadline };
+      dispatch(createJob(data));
     }
-    else{
-      dispatch(createJob(data))
-    }
-    nevigate('/');
-   
+    nevigate("/");
   };
   return (
     <div>
@@ -57,7 +50,7 @@ function Form({ formType }) {
         </h1>
 
         <div class="max-w-3xl mx-auto">
-          <form class="space-y-6" onSubmit={(e)=>submitHandler(e)}>
+          <form class="space-y-6" onSubmit={(e) => submitHandler(e)}>
             <div class="fieldContainer">
               <label
                 for="lws-JobTitle"
@@ -94,8 +87,12 @@ function Form({ formType }) {
 
             <div class="fieldContainer">
               <label for="lws-formType">Job Type</label>
-              <select id="lws-formType" name="lwsformType" required onChange={(e) => setType(e.target.value)}
-              value={type}
+              <select
+                id="lws-formType"
+                name="lwsformType"
+                required
+                onChange={(e) => setType(e.target.value)}
+                value={type}
               >
                 <option value="" hidden selected>
                   Select Job Type
