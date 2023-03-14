@@ -9,6 +9,7 @@ function Home() {
   );
   const [sortType, setSortType] = useState("default");
   const dispatch = useDispatch();
+  let [searchText ,setSearchText]= useState('');
   let filteredJobs = "";
   const dropDownHandler = (e) => {
     const dropDownValue = e.target.value;
@@ -20,6 +21,10 @@ function Home() {
     dispatch(fetchJobs());
     return () => {};
   }, []);
+  const searchHandler = (value)=>{
+    console.log(value);
+    setSearchText(value);
+  }
   let content = "";
   if (isLoading) {
     content = <p style={{ color: "white", fontWeight: "bold" }}>Loading...</p>;
@@ -48,6 +53,10 @@ function Home() {
       });
     }
     console.log(filteredJobs);
+    filteredJobs=filteredJobs.filter(item=>{
+      return item.title.toLowerCase().indexOf(searchText)>=0;
+    })
+   
     content = filteredJobs.map((job) => <Job key={job.id} job={job} />);
   }
 
@@ -64,6 +73,7 @@ function Home() {
                 placeholder="Search Job"
                 class="search-input"
                 id="lws-searchJob"
+                onChange={(e)=>searchHandler(e.target.value)}
               />
             </div>
             <select
