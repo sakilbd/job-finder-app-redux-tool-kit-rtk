@@ -1,17 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { createJob, updateJob } from "../features/jobs/jobSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 
+
 function Form({ formType }) {
+  const data = useSelector(state=>state.jobs);
   const dispatch = useDispatch();
   const [title, setTitle] = useState("");
   const [type, setType] = useState("");
   const [salary, setsalary] = useState("");
   const [deadline, setDeadline] = useState("");
-
   const {jobId} = useParams(); 
+  useEffect(() => {
+    if(formType="edit-job"){
+      const jobInfo=data.jobs.filter(item=>{
+        return item.id==jobId;
+      })
+      setTitle(jobInfo[0].title);
+      setType(jobInfo[0].type);
+      setsalary(jobInfo[0].salary);
+      setDeadline(jobInfo[0].deadline);
+      console.log(jobInfo[0]);
+      console.log(title);
+    }
+  
+    return () => {
+      
+    }
+  }, [])
+  
 
   const submitHandler = (e) => {
   
@@ -49,6 +68,7 @@ function Form({ formType }) {
                 name="lwsJobTitle"
                 required
                 onChange={(e) => setTitle(e.target.value)}
+                value={title}
               >
                 <option value="" hidden selected>
                   Select Job
@@ -72,7 +92,9 @@ function Form({ formType }) {
 
             <div class="fieldContainer">
               <label for="lws-formType">Job Type</label>
-              <select id="lws-formType" name="lwsformType" required onChange={(e) => setType(e.target.value)}>
+              <select id="lws-formType" name="lwsformType" required onChange={(e) => setType(e.target.value)}
+              value={type}
+              >
                 <option value="" hidden selected>
                   Select Job Type
                 </option>
@@ -94,6 +116,7 @@ function Form({ formType }) {
                   class="!rounded-l-none !border-0"
                   placeholder="20,00,000"
                   onChange={(e) => setsalary(e.target.value)}
+                  value={salary}
                 />
               </div>
             </div>
@@ -106,6 +129,7 @@ function Form({ formType }) {
                 id="lws-JobDeadline"
                 required
                 onChange={(e) => setDeadline(e.target.value)}
+                value={deadline}
               />
             </div>
 
