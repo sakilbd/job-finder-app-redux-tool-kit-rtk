@@ -1,9 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import {
-    addTransaction,
-    deleteJob,
-    editTransaction,
     getJobs,
+    addJob,
+    deleteJob,
+   editJob,
+   
 } from "./jobAPI";
 
 const initialState = {
@@ -23,18 +24,18 @@ export const fetchJobs = createAsyncThunk(
     }
 );
 
-export const createTransaction = createAsyncThunk(
-    "transaction/createTransaction",
+export const createJob = createAsyncThunk(
+    "jobs/createJob",
     async (data) => {
-        const transaction = await addTransaction(data);
-        return transaction;
+        const job = await addJob(data);
+        return job;
     }
 );
 
-export const changeTransaction = createAsyncThunk(
-    "transaction/changeTransaction",
+export const updateJob = createAsyncThunk(
+    "jobs/editJob",
     async ({ id, data }) => {
-        const transaction = await editTransaction(id, data);
+        const transaction = await editJob(id, data);
         return transaction;
     }
 );
@@ -76,25 +77,25 @@ const jobSlice = createSlice({
                 state.error = action.error?.message;
                 state.jobs = [];
             })
-            .addCase(createTransaction.pending, (state) => {
+            .addCase(createJob.pending, (state) => {
                 state.isError = false;
                 state.isLoading = true;
             })
-            .addCase(createTransaction.fulfilled, (state, action) => {
+            .addCase(createJob.fulfilled, (state, action) => {
                 state.isError = false;
                 state.isLoading = false;
                 state.jobs.push(action.payload);
             })
-            .addCase(createTransaction.rejected, (state, action) => {
+            .addCase(createJob.rejected, (state, action) => {
                 state.isLoading = false;
                 state.isError = true;
                 state.error = action.error?.message;
             })
-            .addCase(changeTransaction.pending, (state) => {
+            .addCase(updateJob.pending, (state) => {
                 state.isError = false;
                 state.isLoading = true;
             })
-            .addCase(changeTransaction.fulfilled, (state, action) => {
+            .addCase(updateJob.fulfilled, (state, action) => {
                 state.isError = false;
                 state.isLoading = false;
 
@@ -104,7 +105,7 @@ const jobSlice = createSlice({
 
                 state.jobs[indexToUpdate] = action.payload;
             })
-            .addCase(changeTransaction.rejected, (state, action) => {
+            .addCase(updateJob.rejected, (state, action) => {
                 state.isLoading = false;
                 state.isError = true;
                 state.error = action.error?.message;

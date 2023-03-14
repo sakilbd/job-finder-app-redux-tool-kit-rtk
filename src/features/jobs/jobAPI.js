@@ -6,20 +6,23 @@ export const getJobs = async () => {
     return response.data;
 };
 
-export const addTransaction = async (data) => {
-    const response = await axios.post("/transactions", data);
-
+export const addJob = async (data) => {
+    const response = await axios.post("/jobs", data);
     return response.data;
 };
 
-export const editTransaction = async (id, data) => {
-    const response = await axios.put(`/transactions/${id}`, data);
-
-    return response.data;
-};
 
 export const deleteJob = async (id) => {
     const response = axios.delete(`/jobs/${id}`);
 
     return response.data;
 };
+
+
+export const editJob = async (id, data) => {
+    const response = await axios.put(`/jobs/${id}`, data);
+
+    return response.data;
+};
+
+
