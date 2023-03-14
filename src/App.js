@@ -19,8 +19,8 @@ function App() {
             {/* <Form/> */}
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/job/:jobId" element={<Form type="job"/>} />
-              <Route path="/create-job" element={<Form type="create-job"/>} />
+              <Route path="/job/:jobId" element={<Form formType="edit-job"/>} />
+              <Route path="/create-job" element={<Form formType="create-job"/>} />
             </Routes>
           </div>
         </div>

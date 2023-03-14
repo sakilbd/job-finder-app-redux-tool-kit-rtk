@@ -1,13 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 
-function Form({type}) {
+function Form({ formType }) {
+  const [title, setTitle] = useState("");
+  const [type, setType] = useState("");
+  const [salary, setsalary] = useState("");
+  const [deadline, setDeadline] = useState("");
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    console.log(title);
+   
+  };
   return (
     <div>
       <main class="max-w-3xl rounded-lg mx-auto relative z-20 p-10 xl:max-w-none bg-[#1E293B]">
-        <h1 class="mb-10 text-center lws-section-title">{type=='job'?'Edit Job':'Add NewJob'}</h1>
+        <h1 class="mb-10 text-center lws-section-title">
+          {formType == "edit-job" ? "Edit Job" : "Add NewJob"}
+        </h1>
 
         <div class="max-w-3xl mx-auto">
-          <form class="space-y-6">
+          <form class="space-y-6" onSubmit={(e)=>submitHandler(e)}>
             <div class="fieldContainer">
               <label
                 for="lws-JobTitle"
@@ -15,7 +27,12 @@ function Form({type}) {
               >
                 Job Title
               </label>
-              <select id="lws-JobTitle" name="lwsJobTitle" required>
+              <select
+                id="lws-JobTitle"
+                name="lwsJobTitle"
+                required
+                onChange={(e) => setTitle(e.target.value)}
+              >
                 <option value="" hidden selected>
                   Select Job
                 </option>
@@ -37,8 +54,8 @@ function Form({type}) {
             </div>
 
             <div class="fieldContainer">
-              <label for="lws-JobType">Job Type</label>
-              <select id="lws-JobType" name="lwsJobType" required>
+              <label for="lws-formType">Job Type</label>
+              <select id="lws-formType" name="lwsformType" required onChange={(e) => setType(e.target.value)}>
                 <option value="" hidden selected>
                   Select Job Type
                 </option>
@@ -59,6 +76,7 @@ function Form({type}) {
                   required
                   class="!rounded-l-none !border-0"
                   placeholder="20,00,000"
+                  onChange={(e) => setsalary(e.target.value)}
                 />
               </div>
             </div>
@@ -70,6 +88,7 @@ function Form({type}) {
                 name="lwsJobDeadline"
                 id="lws-JobDeadline"
                 required
+                onChange={(e) => setDeadline(e.target.value)}
               />
             </div>
 
@@ -79,7 +98,7 @@ function Form({type}) {
                 id="lws-submit"
                 class="cursor-pointer btn btn-primary w-fit"
               >
-                {type=='job'?'Edit':'Add'}
+                {formType == "edit-job" ? "Edit" : "Add"}
               </button>
             </div>
           </form>
