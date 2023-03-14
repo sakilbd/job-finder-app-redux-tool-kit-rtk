@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { createJob, updateJob } from "../features/jobs/jobSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 
 
@@ -12,7 +12,8 @@ function Form({ formType }) {
   const [type, setType] = useState("");
   const [salary, setsalary] = useState("");
   const [deadline, setDeadline] = useState("");
-  const {jobId} = useParams(); 
+  const {jobId} = useParams();
+  const nevigate = useNavigate(); 
   useEffect(() => {
     if(formType="edit-job"){
       const jobInfo=data.jobs.filter(item=>{
@@ -45,6 +46,7 @@ function Form({ formType }) {
     else{
       dispatch(createJob(data))
     }
+    nevigate('/');
    
   };
   return (
