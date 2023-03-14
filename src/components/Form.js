@@ -16,14 +16,15 @@ function Form({ formType }) {
   const submitHandler = (e) => {
   
     e.preventDefault();
-    const formData={title,type,salary,deadline}
-    console.log(formData);
+    const data={title,type,salary,deadline}
+    
     console.log(title);
+    console.log("jobId",jobId);
     if(formType=='edit-job'){
-      dispatch(updateJob(jobId,formData));
+      dispatch(updateJob({jobId,data}));
     }
     else{
-      dispatch(createJob(formData))
+      dispatch(createJob(data))
     }
    
   };

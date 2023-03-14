@@ -34,9 +34,9 @@ export const createJob = createAsyncThunk(
 
 export const updateJob = createAsyncThunk(
     "jobs/editJob",
-    async ({ id, data }) => {
-        const transaction = await editJob(id, data);
-        return transaction;
+    async ({ jobId, data }) => {
+        const job = await editJob(jobId, data);
+        return job;
     }
 );
 
