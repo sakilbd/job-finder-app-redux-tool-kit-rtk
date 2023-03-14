@@ -1,13 +1,6 @@
 {
   "jobs": [
     {
-      "title": "DevOps Engineer",
-      "type": "Internship",
-      "salary": "25002",
-      "deadline": "2024-12-31",
-      "id": 2
-    },
-    {
       "title": "QA Engineer",
       "type": "Full Time",
       "salary": "15000",

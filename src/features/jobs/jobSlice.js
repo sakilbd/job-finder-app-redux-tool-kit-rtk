@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import {
     addTransaction,
-    deleteTransaction,
+    deleteJob,
     editTransaction,
     getJobs,
 } from "./jobAPI";
@@ -39,11 +39,11 @@ export const changeTransaction = createAsyncThunk(
     }
 );
 
-export const removeTransaction = createAsyncThunk(
-    "transaction/removeTransaction",
+export const removeJob = createAsyncThunk(
+    "jobs/deleteJobs",
     async (id) => {
-        const transaction = await deleteTransaction(id);
-        return transaction;
+        const job = await deleteJob(id);
+        return job;
     }
 );
 
@@ -109,11 +109,11 @@ const jobSlice = createSlice({
                 state.isError = true;
                 state.error = action.error?.message;
             })
-            .addCase(removeTransaction.pending, (state) => {
+            .addCase(removeJob.pending, (state) => {
                 state.isError = false;
                 state.isLoading = true;
             })
-            .addCase(removeTransaction.fulfilled, (state, action) => {
+            .addCase(removeJob.fulfilled, (state, action) => {
                 console.log(action);
                 state.isError = false;
                 state.isLoading = false;
@@ -122,7 +122,7 @@ const jobSlice = createSlice({
                     (t) => t.id !== action.meta.arg
                 );
             })
-            .addCase(removeTransaction.rejected, (state, action) => {
+            .addCase(removeJob.rejected, (state, action) => {
                 state.isLoading = false;
                 state.isError = true;
                 state.error = action.error?.message;

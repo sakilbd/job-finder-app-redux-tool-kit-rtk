@@ -1,7 +1,10 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { removeJob } from "../features/jobs/jobSlice";
 
 function Job({job}) {
+  const dispatch = useDispatch();
   const {title,type,salary,deadline,id} =job;
   let jobColor = ''
   if(type==='Internship'){
@@ -13,7 +16,9 @@ function Job({job}) {
   if(type==='Remote'){
     jobColor="#56E5C4"
   }
-
+const deleteJobHander = (id)=>{
+  dispatch(removeJob(id));
+}
   return (
     <div>
       <div class="lws-single-job">
@@ -46,7 +51,7 @@ function Job({job}) {
           </span>
 
           <span class="sm:ml-3">
-            <button type="button" class="lws-delete btn btn-danger ">
+            <button type="button" class="lws-delete btn btn-danger " onClick={()=>deleteJobHander(id)}>
               <i class="fa-solid fa-trash text-gray-300 -ml-1 mr-2"></i>
               Delete
             </button>

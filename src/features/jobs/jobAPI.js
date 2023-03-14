@@ -18,8 +18,8 @@ export const editTransaction = async (id, data) => {
     return response.data;
 };
 
-export const deleteTransaction = async (id) => {
-    const response = axios.delete(`/transactions/${id}`);
+export const deleteJob = async (id) => {
+    const response = axios.delete(`/jobs/${id}`);
 
     return response.data;
 };
