@@ -4,6 +4,7 @@ import logo from "./assets/images/logo.svg";
 import Sidebar from "./components/Sidebar.js";
 import Home from "./components/Home";
 import Form from "./components/Form";
+import AddForm from "./components/AddForm";
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/job/:jobId" element={<Form formType="edit-job"/>} />
-              <Route path="/create-job" element={<Form formType="create-job"/>} />
+              <Route path="/create-job" element={<AddForm/>} />
             </Routes>
           </div>
         </div>
