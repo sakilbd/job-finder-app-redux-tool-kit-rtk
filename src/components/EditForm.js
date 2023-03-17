@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { updateJob } from "../features/jobs/jobSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import { setJobType } from "../features/jobs/jobSlice";
 
 function EditForm({job}) {
     console.log(job);
@@ -19,6 +20,7 @@ function EditForm({job}) {
     e.preventDefault();
     const data = { title, type, salary, deadline };
     dispatch(updateJob({ jobId, data }));
+    dispatch(setJobType("all"));
     nevigate("/");
   };
   return (
